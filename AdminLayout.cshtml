@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div align="center">
+        <table class="tbldesign">
+            <tr>
+                <td colspan="5">XYZ Apparels</td>
+            <tr>
+                <td colspan="3">User : @User.Identity.Name</td>
+                <td colspan="2">@DateTime.Now.ToLongDateString()</td>
+
+            </tr>
+            <tr>
+
+                <td>@Html.ActionLink("Home", "Index", "Home")</td>
+                <td>@Html.ActionLink("New Data Entry Operator", "CreateDataEntryOperator", "Home")</td>
+                <td>@Html.ActionLink("Show Data Entry Operators", "ShowDataEntryOperators", "Home")</td>
+                <td>@Html.ActionLink("Find Data Entry Operator", "FindDataEntryOperator", "Home")</td>
+                <td>@Html.ActionLink("Logout", "Logout", "Home")</td>
+            </tr>
+            <tr>
+                <td colspan="5">@RenderBody()</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align:left;padding:10px">Developed by: Ram Prakash</td>
+                <td colspan="2" style="text-align:right;padding:10px">CopyRight Information</td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+</html>

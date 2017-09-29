@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>XYZ Apparels</title>
+    <link rel="shortcut icon" href="~/images/pos.png">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DT_bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+    </style>
+
+    <link href="~/Content/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Content/style.css" media="screen" rel="stylesheet" />
+    <link href="~/src/facebox.css" media="screen" rel="stylesheet" />
+    <script src="~/lib/jquery.js"></script>
+    <script src="~/src/facebox.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('a[rel*=facebox]').facebox({
+                loadingImage : 'src/loading.gif',
+                closeImage   : 'src/closelabel.png'
+            })
+        })
+    </script>
+
+    <script language="javascript" type="text/javascript">
+        window.onbeforeunload = function () {
+            return "You work will be lost.";
+        };
+        var timerID = null;
+        var timerRunning = false;
+        function stopclock() {
+            if (timerRunning)
+                clearTimeout(timerID);
+            timerRunning = false;
+        }
+        function showtime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds()
+            var timeValue = "" + ((hours > 12) ? hours - 12 : hours)
+            if (timeValue == "0") timeValue = 12;
+            timeValue += ((minutes < 10) ? ":0" : ":") + minutes
+            timeValue += ((seconds < 10) ? ":0" : ":") + seconds
+            timeValue += (hours >= 12) ? " P.M." : " A.M."
+            document.clock.face.value = timeValue;
+            timerID = setTimeout("showtime()", 1000);
+            timerRunning = true;
+        }
+        function startclock() {
+            stopclock();
+            showtime();
+        }
+        window.onload = startclock;
+    </script>
+
+
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
+
+
+    
+
+
+<body>
+    <?php include('navfixed.php');?>
+    <?php
+    $position=$_SESSION['SESS_LAST_NAME'];
+    if($position=='cashier') {
+    ?>
+
+    <a href="../index.php">Logout</a>
+    <?php
+    }
+    if($position=='admin') {
+    ?>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="active"><a href="#"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li>
+                        <li><a href="billing.php"><i class="icon-shopping-cart icon-2x"></i> Billing </a>  </li>
+                        <li><a href="costing.php"><i class="icon-tags icon-2x"></i> Costing</a></li>
+                        <li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a></li>
+                        <li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a></li>
+                        <li><a href="contractor.php"><i class="icon-group icon-2x"></i> Contractors</a></li>
+                        <li><a href="purchase.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Purchase</a>  </li>
+                        <li><a href="stocks.php"><i class="icon-list-alt icon-2x"></i> Stock Details</a></li>
+                        <li><a href="salesreport.php?d1=<?php echo date('m/d/Y');?>&d2=<?php echo date('m/d/Y');?>"><i class="icon-bar-chart icon-2x"></i> Sales Report</a></li>
+                        <br>
+                        <br>
+                        <br>
+                    </ul>
+                </div>
+            </div>
+            <div class="span10">
+                <div class="contentheader">
+                    <i class="icon-dashboard"></i> Dashboard
+                </div>
+                <ul class="breadcrumb">
+                    <li class="active">Dashboard</li>
+                </ul>
+                <font style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 25px #000; color:#fff;"><center>Joyson Apparels</center></font>
+                <div id="mainmain">
+                    <a href="billing.php"><i class="icon-shopping-cart icon-2x"></i><br> Billing </a>
+                    <a href="costing.php"><i class="icon-tags icon-2x"></i><br>Costing</a>
+                    <a href="customer.php"><i class="icon-group icon-2x"></i><br> Customers</a>
+                    <a href="supplier.php"><i class="icon-group icon-2x"></i><br> Suppliers</a>
+                    <a href="contractor.php"><i class="icon-group icon-2x"></i><br> Contractors</a>
+                    <a href="purchase.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i><br>Purchase</a>
+                    <a href="stocks.php"><i class="icon-list-alt icon-2x"></i><br> Stock Details</a>
+                    <a href="salesreport.php?d1=<?php echo date(" m />d/Y");?>&d2=<?php echo date("m/d/Y");?>"><i class="icon-bar-chart icon-2x"></i><br> Sales Report</a>
+                    <a href="../index.php"><font color="red"><i class="icon-off icon-2x"></i></font><br> Logout</a>
+                    <?php
+                    }
+                    ?>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<?php include('footer.php'); ?>
+</html>
