@@ -1,0 +1,85 @@
+﻿<link href="~/Content/style.css" rel="stylesheet" />
+<style type="text/css">
+    body {
+        counter-reset: section;
+    }
+
+    .count:before {
+        counter-increment: section;
+        content: counter(section);
+    }
+</style>
+
+<script src="~/Content/js/validator.js"></script>
+@model Mvc_XYZ_Apparels.Models.SupplierModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <center><h4><i class="icon-plus-sign icon-large"></i> Add Supplier</h4></center>
+    <hr>
+    <div class="span4" id="ac">
+        <span>Agent Name : </span>
+        @Html.TextBoxFor(model => model.SupplierName, new { @class = "code", id = "customFieldName", Style = "width:255px; height:30px;", placeholder = "Agent Name", Required = "Required" })
+        @Html.ValidationMessageFor(model => model.SupplierName)
+        <br>
+        <div id="ac">
+            <div>
+                <table class="form-table" id="customFields">
+                    <tr valign="top">
+                        <td scope="row"><span>Mill Name :</span></td>
+                        <td>
+                            &nbsp;@Html.TextBoxFor(model => model.MillName, new { Style = "width:170px; height:30px;", placeholder = "Mill Name", Value = "", Required = "Required" })&nbsp;<a href="javascript:void(0);" class="addCF">Add</a>
+                            @Html.ValidationMessageFor(model => model.SupplierName)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <span>Address : </span>
+        @Html.TextBoxFor(model => model.SupplierAddress, new { Style = "width:255px; height:50px;", placeholder = "Address", Required = "Required" })
+        @Html.ValidationMessageFor(model => model.SupplierAddress)
+        <br>
+        <span>Website : </span>
+        @Html.TextBoxFor(model => model.SupplierWebsite, new { Style = "width:255px; height:30px;", placeholder = "Website" })
+        @Html.ValidationMessageFor(model => model.SupplierWebsite)
+        <br>
+        <span>Email : </span>
+        @Html.TextBoxFor(model => model.SupplierEmailID, new { Style = "width:255px; height:30px;", placeholder = "Email", id = "email" })
+        @Html.ValidationMessageFor(model => model.SupplierEmailID)
+        <br>
+    </div>
+    <div class="span4" id="ac">
+        <span>Landline : </span>
+        @Html.TextBoxFor(model => model.SupplierLandline, new { Style = "width:255px; height:30px;", placeholder = "Telephone", id = "tele" })
+        @Html.ValidationMessageFor(model => model.SupplierLandline)
+        <br>
+        <span>Contact1 Name: </span>
+        @Html.TextBoxFor(model => model.SupplierContactName1, new { Style = "width:255px; height:30px;", placeholder = "Name", Required = "Required" })
+        @Html.ValidationMessageFor(model => model.SupplierContactName1)
+        <br>
+        <span>Contact1 Mobile: </span>
+        @Html.TextBoxFor(model => model.SupplierContactNumber1, new { Style = "width:255px; height:30px;", placeholder = "Mobile", Required = "Required", id = "mobile1" })
+        @Html.ValidationMessageFor(model => model.SupplierContactNumber1)
+        <br>
+        <span>Contact2 Name: </span>
+        @Html.TextBoxFor(model => model.SupplierContactName2, new { Style = "width:255px; height:30px;", placeholder = "Name" })
+        @Html.ValidationMessageFor(model => model.SupplierContactName2)
+        <br>
+        <span>Contact2 Mobile: </span>
+        @Html.TextBoxFor(model => model.SupplierContactNumber2, new { Style = "width:255px; height:30px;", placeholder = "Mobile", id = "mobile2" })
+        @Html.ValidationMessageFor(model => model.SupplierContactNumber2)
+        <br>
+    </div>
+    <div id="ac" class="span4">
+        <span>Due: </span>
+        @Html.TextBoxFor(model => model.CustomerDue, new { Style = "width:255px; height:30px;", placeholder = "Due", Value = "0" })
+        <br>
+        <div style="float:inherit; margin-right:10px;margin-top: 50px;">
+            <button class="btn btn-success btn-block btn-large" id="submit-btn" style="width:257px;"><i class="icon icon-save icon-large"></i> Save</button>
+
+        </div>
+    </div>
+}

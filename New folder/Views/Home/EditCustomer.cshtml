@@ -1,0 +1,73 @@
+﻿<script src="~/Content/js/jquery.min.js"></script>
+<script src="~/Content/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .error {
+        color: red;
+        width: 200px;
+        margin-right: 100px;
+    }
+</style>
+
+<script src="~/Content/js/validator.js"></script>
+@model Mvc_XYZ_Apparels.Models.CustomerModel
+@{
+    var cus = (Mvc_XYZ_Apparels.Models.CustomerModel)ViewData["Customer"];
+}
+@using (Html.BeginForm("EditCustomer", "Home"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.CustomerID, new { Value = @cus.CustomerID })
+    <center><h4><i class="icon-edit icon-large"></i> Edit Customer</h4></center>
+    <hr>
+    <div class="span4" id="ac">
+        <span style="width:110px; height:25px;">Customer Name : </span>
+        @Html.TextBoxFor(model => model.CustomerName, new { Style = "width:255px; height:30px;", placeholder = "Customer Name", Required = "Required", Value = cus.CustomerName })
+        @Html.ValidationMessageFor(model => model.CustomerName)
+
+        <br>
+        <span style="width:110px; height:25px;">Address : </span>
+        @Html.TextBoxFor(model => model.CustomerAddress, new { Style = "width:255px; height:30px;", placeholder = "Address", Required = "Required", Value = cus.CustomerAddress })
+        @Html.ValidationMessageFor(model => model.CustomerAddress)
+        <br>
+        <span style="width:110px; height:25px;">Website : </span>
+        @Html.TextBoxFor(model => model.CustomerWebsite, new { Style = "width:255px; height:30px;", placeholder = "Website", Value = cus.CustomerWebsite })
+        @Html.ValidationMessageFor(model => model.CustomerWebsite)
+        <br>
+        <span style="width:110px; height:25px;">Email : </span>
+        @Html.TextBoxFor(model => model.CustomerEmailID, new { Style = "width:255px; height:30px;", placeholder = "Email", id = "email", Value = cus.CustomerEmailID })
+        @Html.ValidationMessageFor(model => model.CustomerEmailID)
+        <br>
+        <span style="width:110px; height:25px;">Landline : </span>
+        @Html.TextBoxFor(model => model.CustomerLandline, new { Style = "width:255px; height:30px;", placeholder = "Telephone", id = "tele", Value = cus.CustomerLandline })
+        @Html.ValidationMessageFor(model => model.CustomerLandline)
+        <br>
+    </div>
+    <div class="span4" id="ac">
+        <span style="width:110px; height:25px;">Contact1 Name: </span>
+        @Html.TextBoxFor(model => model.CustomerContactName1, new { Style = "width:255px; height:30px;", placeholder = "Name", Required = "Required", Value = cus.CustomerContactName1 })
+        @Html.ValidationMessageFor(model => model.CustomerContactName1)
+        <br>
+        <span style="width:110px; height:25px;">Contact1 Mobile: </span>
+        @Html.TextBoxFor(model => model.CustomerContactNumber1, new { Style = "width:255px; height:30px;", placeholder = "Mobile", Required = "Required", id = "mobile1", Value = cus.CustomerContactNumber1 })
+        @Html.ValidationMessageFor(model => model.CustomerContactNumber1)
+        <br>
+        <span style="width:110px; height:25px;">Contact2 Name: </span>
+        @Html.TextBoxFor(model => model.CustomerContactName2, new { Style = "width:255px; height:30px;", placeholder = "Name", Value = cus.CustomerContactName2 })
+        @Html.ValidationMessageFor(model => model.CustomerContactName2)
+        <br>
+        <span style="width:110px; height:25px;">Contact2 Mobile: </span>
+        @Html.TextBoxFor(model => model.CustomerContactNumber2, new { Style = "width:255px; height:30px;", placeholder = "Mobile", id = "mobile2", Value = cus.CustomerContactNumber2 })
+        @Html.ValidationMessageFor(model => model.CustomerContactNumber2)
+        <br>
+    </div>
+    <div id="ac" class="span4">
+        <span>Due: </span>
+        @Html.TextBoxFor(model => model.CustomerDue, new { Style = "width:255px; height:30px;", placeholder = "Due", Value = cus.CustomerDue })
+        <br>
+        <div style="float:inherit; margin-right:10px;margin-top: 50px;">
+            <button class="btn btn-success btn-block btn-large" id="submit-btn" style="width:257px;"><i class="icon icon-save icon-large"></i> Save</button>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "AdminIndex";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span10">
+                <div class="contentheader">
+                    <i class="icon-dashboard"></i> Dashboard
+                </div>
+                <ul class="breadcrumb">
+                    <li class="active">Dashboard</li>
+                </ul>
+                <font style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 25px #000; color:#fff;"><center>XYZ Apparels</center></font>
+                <div id="mainmain">
+                    <a href="#"><i class="icon-shopping-cart icon-2x"></i><br> Billing </a>
+                    <a href="#"><i class="icon-tags icon-2x"></i><br>Costing</a>
+                    <a href="@Url.Action("ShowCustomers", "Home")"><i class="icon-group icon-2x"></i><br> Customers</a>
+                    <a href="@Url.Action("ShowSuppliers", "Home")"><i class="icon-group icon-2x"></i><br> Suppliers</a>
+                    <a href="@Url.Action("ShowContractors", "Home")"><i class="icon-group icon-2x"></i><br> Contractors</a>
+                    <a href="#"><i class="icon-shopping-cart icon-2x"></i><br>Purchase</a>
+                    <a href="#"><i class="icon-list-alt icon-2x"></i><br> Stock Details</a>
+                    <a href="#"><i class="icon-bar-chart icon-2x"></i><br> Sales Report</a>
+                    <a href="#"><font color="red"><i class="icon-off icon-2x"></i></font><br> Logout</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>

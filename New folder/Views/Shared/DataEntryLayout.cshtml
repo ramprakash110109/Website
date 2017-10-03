@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>XYZ Apparels Home Page</title>
+
+    <link rel="shortcut icon" href="~/Content/Images/pos.png">
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/DT_bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        .navbar-default .navbar-nav > .active > a,
+        .navbar-default .navbar-nav > .active > a:hover,
+        .navbar-default .navbar-nav > .active > a:focus {
+            color: #50A0FF;
+            background-color: #FFFFFF;
+        }
+
+        .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .open > a {
+            background-image: initial;
+        }
+    </style>
+
+    <link href="~/Content/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Content/style.css" media="screen" rel="stylesheet" />
+    <link href="~/Content/src/facebox.css" media="screen" rel="stylesheet" />
+    <script src="~/Content/lib/jquery.js"></script>
+    <script src="~/Content/src/facebox.js"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('a[rel*=facebox]').facebox({
+            loadingImage: '/Content/src/loading.gif',
+            closeImage: '/Content/src/closelabel.png'
+        })
+    })
+    </script>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            nav ul li {
+                margin: 0;
+                padding: 0;
+            }
+
+        /* Top-level menu */
+        nav > ul > li {
+            float: left;
+            position: relative;
+        }
+
+            nav > ul > li > a {
+                padding: 10px 30px;
+                border-left: 1px solid #000;
+                display: block;
+            }
+
+            nav > ul > li:first-child {
+                margin: 0;
+            }
+
+                nav > ul > li:first-child a {
+                    border: 0;
+                }
+
+        /* Dropdown Menu */
+        nav ul li ul {
+            position: absolute;
+            background: #ccc;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: none;
+        }
+
+            nav ul li ul li {
+                width: 100%;
+            }
+
+            nav ul li ul a {
+                padding: 10px 0;
+            }
+
+        nav ul li:hover ul {
+            display: block;
+        }
+    </style>
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #5bb75b;">
+        <div class="navbar-inner" style="background-color:#5bb75b;">
+            <div class="container-fluid" style="background-color: #5bb75b;">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" style="background-color:#5bb75b;">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#"><b>XYZ Apparels 1.0</b></a>
+                <div class="nav-collapse collapse" style="background-color: #5bb75b;">
+                    <ul class="nav pull-right">
+                        <li><a class="ho"><i class="icon-user icon-large"></i> Welcome:<strong> Admin </strong></a></li>
+                        <li><a class="ho"><i class="icon-calendar icon-large"></i><strong>@DateTime.Now.ToLongDateString()</strong></a></li>
+                        <li>
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="ho"><i class="icon-cog icon-large"></i> Settings </a>
+                                        <ul style="background: #5bb75b;">
+                                            <li><a href="#"><i class="icon-user icon-small"></i> User Accounts</a></li>
+                                            <li><a href="#"><i class="icon-lock icon-small"></i> Privacy</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </li>
+                        <li><a class="ho" href="@Url.Action("Logout", "Home")"><font color=" red"><i class="icon-off icon-large"></i></font> Log Out</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AdminIndex" ? "active" : "")"><a href="@Url.Action("AdminIndex", "Home")"><i class="icon-dashboard icon-2x"></i> Dashboard</a></li>
+                        <li><a href="#"><i class="icon-shopping-cart icon-2x"></i> Billing</a>  </li>
+                        <li><a href="#"><i class="icon-tags icon-2x"></i> Costing</a></li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ShowCustomers" ? "active" : "")"><a href="@Url.Action("ShowCustomers", "Home")"><i class="icon-group icon-2x"></i> Customers</a></li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ShowSuppliers" ? "active" : "")"><a href="@Url.Action("ShowSuppliers", "Home")"><i class="icon-group icon-2x"></i> Suppliers</a></li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ShowContractors" ? "active" : "")"><a href="@Url.Action("ShowContractors", "Home")"><i class="icon-group icon-2x"></i> Contractors</a></li>
+                        <li><a href="#"><i class="icon-shopping-cart icon-2x"></i> Purchase</a>  </li>
+                        <li><a href="#"><i class="icon-list-alt icon-2x"></i> Stock Details</a></li>
+                        <li><a href="#"><i class="icon-bar-chart icon-2x"></i> Sales Report</a></li>
+                    </ul>
+                </div><!--/.well -->
+            </div><!--/span-->
+            <div class="span10">
+
+
+                @RenderBody()
+
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <hr>
+
+        <footer>
+            <p>&copy; Company @DateTime.Now.Year</p>
+        </footer>
+
+    </div><!--/.fluid-container-->
+    <link href="~/Content/vendors/chosen.min.css" rel="stylesheet" media="screen" />
+    <script src="~/Content/vendors/chosen.jquery.min.js"></script>
+    <script src="~/Content/vendors/bootstrap-datepicker.js"></script>
+    <script>
+        $(function() {
+            $(".chzn-select").chosen();
+            });
+    </script>
+
+    <!-- Le javascript
+     ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="~/Content/src/facebox.js"></script>
+    <script src="~/Content/js/bootstrap-transition.js"></script>
+    <script src="~/Content/js/bootstrap-alert.js"></script>
+    <script src="~/Content/js/bootstrap-modal.js"></script>
+    <script src="~/Content/js/bootstrap-dropdown.js"></script>
+    <script src="~/Content/js/bootstrap-scrollspy.js"></script>
+    <script src="~/Content/js/bootstrap-tab.js"></script>
+    <script src="~/Content/js/bootstrap-tooltip.js"></script>
+    <script src="~/Content/js/bootstrap-popover.js"></script>
+    <script src="~/Content/js/bootstrap-button.js"></script>
+    <script src="~/Content/js/bootstrap-collapse.js"></script>
+    <script src="~/Content/js/bootstrap-carousel.js"></script>
+    <script src="~/Content/js/bootstrap-typeahead.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <script src="~/Content/js/jquery.dataTables.js"></script>
+    <script src="~/Content/js/DT_bootstrap.js"></script>
+
+</body>
+</html>

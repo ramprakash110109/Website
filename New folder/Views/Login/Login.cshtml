@@ -1,0 +1,77 @@
+﻿@model Mvc_XYZ_Apparels.Models.LoginModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>XYZ Apparels</title>
+    <link rel="shortcut icon" href="~/Content/Images/pos.png">
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/DT_bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+    </style>
+
+    <link href="~/Content/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <div class="container-fluid" style="height:auto">
+        <div class="row-fluid">
+            <div class="span4">
+            </div>
+        </div>
+        <div id="login" style="height:300px;">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div>
+                    <font style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 15px #000; color:#fff;"><center> XYZ Apparels</center></font>
+                </div>
+                <div class="input-prepend">
+                    <span style="height:30px; width:25px;background-color:#5BB75B;" class="add-on"><i class="icon-user icon-2x"></i></span>
+                    <input id="user" style="height:30px;" type="text" name="UserID" placeholder="Username" required /><br>
+                </div>
+
+                <div class="input-prepend">
+                    <span style="height:30px; width:25px;background-color:#5BB75B;" class="add-on"><i class="icon-lock icon-2x"></i></span>
+                    <input id="pass" type="password" style="height:30px;" name="UserPassword" placeholder="Password" required /><br>
+                </div>
+
+                <div>
+                    <span style="height:30px; width:25px;" class="add-on"> Remember Me : </span>
+                    @Html.CheckBox("RememberMe", false, new { @style = "Width:15px;Height:15px" })
+                    @Html.ValidationMessageFor(model => model.RememberMe)
+                </div>
+
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.UserType, ViewBag.logintypes as List<SelectListItem>)
+                    @Html.ValidationMessageFor(model => model.UserType)
+                </div>
+
+                <div class="qwe" style="background-color:#5BB75B;">
+                    <button class=" btn-large  btn-block pull-right" type="submit" style="background-color:#5BB75B;"><i class="icon-signin icon-large"></i> Login</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</body>
+</html>

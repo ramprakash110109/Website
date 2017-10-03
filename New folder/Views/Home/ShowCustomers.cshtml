@@ -1,0 +1,127 @@
+﻿@model Mvc_XYZ_Apparels.Models.CustomerModel
+
+@{
+    ViewBag.Title = "ShowCustomers";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var Model = (List<Mvc_XYZ_Apparels.Models.CustomerModel>)ViewData["CustomerList"];
+}
+
+<div class="contentheader">
+    <i class="icon-group"></i> Customers
+</div>
+<ul class="breadcrumb">
+    <li><a href="index.php">Dashboard</a></li> /
+    <li class="active">Customers</li>
+</ul>
+
+<div style="margin-top: -19px; margin-bottom: 21px;">
+    <a href="#"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
+
+    <div style="text-align:center;">
+        Total Number of Customers: <font color="green" style="font:bold 22px 'Aleo';"> @Html.DisplayFor(count => Model.Count)</font>
+    </div>
+</div>
+<input type="text" name="filter" style="color: black;height: 40px;" id="filter" placeholder="Search Customer..." autocomplete="off" />
+<!--Link to create customer-->
+<a rel="facebox" href="@Url.Action("CreateCustomer", "Home")"><button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Customer</button></a><br><br>
+
+<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+    <thead>
+        <tr>
+            <th width="9%"> Customer Name </th>
+            <th width="9%"> Address </th>
+            <th width="9%"> Contact </th>
+            <th width="9%"> Due </th>
+            <th width="9%"> Status </th>
+            <th width="12%"> Modify </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="record">
+                <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+
+                </td>
+                <td>
+                    1) @Html.DisplayFor(modelItem => item.CustomerContactName1) - @Html.DisplayFor(modelItem => item.CustomerContactNumber1)
+                    <br>
+                    2) @Html.DisplayFor(modelItem => item.CustomerContactName2) - @Html.DisplayFor(modelItem => item.CustomerContactNumber2)
+                    <br><br>
+                    E-mail&nbsp;:&nbsp;@Html.DisplayFor(modelItem => item.CustomerEmailID)<br>
+                    Website&nbsp;:&nbsp;@Html.DisplayFor(modelItem => item.CustomerWebsite)<br>
+                    Phone:@Html.DisplayFor(modelItem => item.CustomerLandline)
+
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerDue)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerStatus)</td>
+                <td>
+                    <a title="Click To Edit Customer" rel="facebox" href="@Url.Action("EditCustomerPanel", "Home")?id=@Html.DisplayFor(modelItem => item.CustomerID)"><button class="btn btn-warning btn-mini"><i class="icon-edit"></i> Edit </button></a>
+                    @{
+            if (item.CustomerStatus == "ACTIVE")
+            {
+                <a href="#" id="@Html.DisplayFor(modelItem => item.CustomerID) " class=" delbutton" title="INACTIVE"><button class="btn btn-danger btn-mini"><i class="icon-remove"></i> In-Activate</button></a>
+
+            }
+            else
+            {
+                <a href="#" id="@Html.DisplayFor(modelItem => item.CustomerID) " class=" delbutton" title="ACTIVE"><button class="btn btn-success btn-mini"><i class="icon-ok"></i> Activate</button></a>
+
+            }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="clearfix"></div>
+
+
+
+
+
+
+<script src="~/Content/js/jquery.js"></script>
+<script type="text/javascript">
+$(function() {
+$(".delbutton").click(function(){
+
+//Save the link in a variable called element
+var element = $(this);
+
+//Find the id of the link that was clicked
+var del_id = element.attr("id");
+var s= element.attr("title");
+//Built a url to send
+var info = 'id=' + del_id+'&status='+s;
+ if(confirm("Are You Sure Want To Change the Customer Status ?"))
+{
+ $.ajax({
+   type: "GET",
+   url: "@Url.Action("ChangeCustomerStatus","Home")",
+   data: info,
+   success: function(){
+   }
+ });
+     console.log($(this));
+     var td = $($(this)).parent('td').prev('td');
+     if (s == 'ACTIVE') {
+         element.attr("title","INACTIVE");
+         td.html('ACTIVE');
+         $(this).html('<button class="btn btn-danger btn-mini"><i class="icon-remove"></i> In-Activate</button>');
+     }else
+     {
+         element.attr("title","ACTIVE");
+         td.html('INACTIVE');
+         $(this).html('<button class="btn btn-success btn-mini"><i class="icon-ok"></i> Activate</button>');
+     }
+ }
+return false;
+});
+});
+</script>
+
+<script src="~/Content/js/application.js" charset="utf-8"></script>
+<script src="~/Content/lib/jquery.js"></script>
